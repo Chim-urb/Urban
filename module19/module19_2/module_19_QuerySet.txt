@@ -1,0 +1,24 @@
+ python manage.py shell
+from task1.models import Buyer
+Buyer.objects.all()
+
+Создаём пользователей
+Buyer.objects.create(name='First', balance=150) 
+Buyer.objects.create(name='Urban', balance=200, age=51) 
+Buyer.objects.create(name='Student', balance=200, age=70)
+Создаём игры:
+Game.objects.create(title='The Witcher 3: Wild Hunt - Hearts of Stone', cost=10, size=12.1,description='Hearts of Stone is the first add-on adventure for The Witcher 3: Wild Hunt. It was released on 13 October 2015 for all three major platforms: PC, PlayStation 4 and Xbox One',  age_limited="True") 
+Game.objects.create(title='Mass Effect 2', cost=10, size=12.1,description='The Mass Effect trilogy is a masterful science fiction adventure set in a vast universe filled with dangerous alien life forms and mysterious uncharted planets.',  age_limited="True") 
+Game.objects.create(title='Spyro Reignited Trilogy', cost=5, size=12.1,description='сборник ремастеров первых трёх компьютерных игр из серии Spyro the Dragon.') 
+
+Присваиваем переменным объекты
+first_buyer=Buyer.objects.get(id=1) 
+second_buyer=Buyer.objects.get(id=2)  
+third_buyer=Buyer.objects.get(id=3)  
+
+Создание связей:
+Game.objects.get(id=3).buyer.set((first_buyer, second_buyer,third_buyer)) 
+Game.objects.get(id=2).buyer.set(( second_buyer,third_buyer))  
+Game.objects.get(id=1).buyer.set((third_buyer,)) 
+
+
